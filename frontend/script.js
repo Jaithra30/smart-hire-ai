@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://smart-hire-ai-d2zm.onrender.com';
 
 // DOM Elements
 const dropZone = document.getElementById('drop-zone');
