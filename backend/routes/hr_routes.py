@@ -1,7 +1,7 @@
 import re
 from flask import Blueprint, request, jsonify
-from utils.extract import extract_text_from_pdf, extract_email, extract_phone, extract_name, extract_skills, detect_role
-from utils.scoring import calculate_score, get_missing_skills, generate_ai_summary, get_decision, get_experience_keywords
+from backend.utils.extract import extract_text_from_pdf, extract_email, extract_phone, extract_name, extract_skills, detect_role
+from backend.utils.scoring import calculate_score, get_missing_skills, generate_ai_summary, get_decision, get_experience_keywords
 
 hr_bp = Blueprint('hr_bp', __name__)
 
