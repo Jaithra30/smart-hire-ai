@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHire AI - Single Resume Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>SmartHire AI</h1>
+        <nav>
+            <a href="index.html" class="active">Single Analyzer</a>
+            <a href="hr.html">HR Dashboard</a>
+            <a href="dashboard.html">Code Debugger</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" id="upload-container">
+            <h2 class="title">Upload Resume</h2>
+            <div class="error-msg" id="error-box"></div>
+            
+            <form id="upload-form">
+                <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                    <i class="fa-solid fa-cloud-arrow-up fa-3x" style="color: var(--primary); margin-bottom: 1rem;"></i>
+                    <p>Drag & drop your PDF here or <strong>browse</strong></p>
+                    <input type="file" id="file-input" accept="application/pdf">
+                </div>
+                <p id="file-name" style="text-align: center; margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
+                <button type="submit" class="btn" id="submit-btn">
+                    Analyze Resume <div class="spinner" id="spinner"></div>
+                </button>
+            </form>
+        </div>
+
+        <div id="results-container" style="display: none; margin-top: 2rem;">
+            <button class="btn" style="width: auto; margin-bottom: 1rem; background: var(--text-muted);" onclick="resetView()">
+                <i class="fa-solid fa-arrow-left"></i> Analyze Another
+            </button>
+            <h2 class="title">Analysis Result</h2>
+            <div class="results-grid" id="results-grid">
+                <!-- Result card will be injected here -->
+            </div>
+        </div>
+
+        <!-- Candidate Profile Modal -->
+        <div class="modal-overlay" id="candidate-modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHire AI - Code Debugger</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>SmartHire AI</h1>
+        <nav>
+            <a href="index.html">Single Analyzer</a>
+            <a href="hr.html">HR Dashboard</a>
+            <a href="dashboard.html" class="active">Code Debugger</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 800px;">
+            <h2 class="title">Code Debugger</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.875rem;">Detect syntax mistakes like missing brackets and colons.</p>
+            
+            <div class="error-msg" id="debug-error-box"></div>
+            
+            <form id="debug-form">
+                <select id="language-select">
+                    <option value="python">Python</option>
+                    <option value="javascript">JavaScript</option>
+                </select>
+                
+                <div class="textarea-container">
+                    <textarea id="code-input" placeholder="Paste your code here..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn" id="debug-submit-btn">
+                    Analyze Code <div class="spinner" id="debug-spinner"></div>
+                </button>
+            </form>
+            
+            <div id="debug-results" class="debug-results">
+                <h3 id="debug-message" style="margin-bottom: 0.5rem; font-size: 1.125rem;"></h3>
+                <ul id="debug-errors-list" style="margin-left: 1.5rem; font-size: 0.875rem; margin-bottom: 1rem;"></ul>
+                <div id="debug-fixes-container" style="display: none;">
+                    <strong>Suggested Fixes:</strong>
+                    <ul id="debug-fixes-list" style="margin-left: 1.5rem; font-size: 0.875rem;"></ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

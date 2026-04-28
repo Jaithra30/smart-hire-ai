@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHire AI - HR Multi Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>SmartHire AI</h1>
+        <nav>
+            <a href="index.html">Single Analyzer</a>
+            <a href="hr.html" class="active">HR Dashboard</a>
+            <a href="dashboard.html">Code Debugger</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" id="upload-container">
+            <h2 class="title">Batch Upload Resumes</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.875rem;">Upload up to 10 PDF files at once.</p>
+            <div class="error-msg" id="error-box"></div>
+            
+            <form id="hr-upload-form">
+                <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                    <i class="fa-solid fa-users fa-3x" style="color: var(--primary); margin-bottom: 1rem;"></i>
+                    <p>Drag & drop multiple PDFs here or <strong>browse</strong></p>
+                    <input type="file" id="file-input" accept="application/pdf" multiple>
+                </div>
+                <p id="file-name" style="text-align: center; margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
+                <button type="submit" class="btn" id="submit-btn">
+                    Process Candidates <div class="spinner" id="spinner"></div>
+                </button>
+            </form>
+        </div>
+
+        <div id="results-container" style="display: none; margin-top: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h2 class="title" style="margin-bottom: 0;">Top Candidates</h2>
+                <button class="btn" style="width: auto; background: var(--text-muted);" onclick="resetView()">
+                    <i class="fa-solid fa-arrow-left"></i> Upload More
+                </button>
+            </div>
+            
+            <div class="hr-layout">
+                <!-- Filter Sidebar -->
+                <div class="filter-sidebar">
+                    <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">Filters</h3>
+                    
+                    <div class="filter-group">
+                        <label for="filter-role">Role</label>
+                        <select id="filter-role">
+                            <option value="All">All Roles</option>
+                            <option value="Frontend">Frontend</option>
+                            <option value="Backend">Backend</option>
+                            <option value="Full Stack">Full Stack</option>
+                            <option value="Data">Data</option>
+                            <option value="ML">ML</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-score">Minimum Score: <span id="score-val">0</span></label>
+                        <input type="range" id="filter-score" min="0" max="100" value="0">
+                    </div>
+
+                    <div class="filter-group filter-checkboxes" id="filter-skills">
+                        <label>Skills (Any)</label>
+                        <label><input type="checkbox" value="Python"> Python</label>
+                        <label><input type="checkbox" value="JavaScript"> JavaScript</label>
+                        <label><input type="checkbox" value="React"> React</label>
+                        <label><input type="checkbox" value="Django"> Django</label>
+                        <label><input type="checkbox" value="SQL"> SQL</label>
+                    </div>
+
+                    <div class="filter-group filter-checkboxes" id="filter-experience">
+                        <label>Experience</label>
+                        <label><input type="checkbox" value="Project"> Has Project</label>
+                        <label><input type="checkbox" value="Internship"> Has Internship</label>
+                    </div>
+                </div>
+
+                <div class="results-grid" id="results-grid" style="flex: 1; margin-top: 0;">
+                    <!-- Result cards will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidate Profile Modal -->
+        <div class="modal-overlay" id="candidate-modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
